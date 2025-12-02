@@ -1,4 +1,5 @@
 'use client'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +11,8 @@ import {
 import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { LogOut } from "lucide-react"
+import NavItems from "./NavItems"
 
 const UserDropdown = () => {
   const router = useRouter()
@@ -34,13 +37,33 @@ const UserDropdown = () => {
           </div>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
+      <DropdownMenuContent className="text-gray-400 ">
+        <DropdownMenuLabel>
+
+          <div className="flex relative items-center gap-3 py-2">
+            <Avatar className="h-10 w-10">
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>{user.name}</AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col">
+              <span className="text-base font-medium text-gray-400">
+                {user.name}
+              </span>
+              <span className="text-sm text-gray-500">
+                {user.email}
+              </span>
+            </div>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator className="bg-gray-600" />
+        <DropdownMenuItem>
+          <LogOut className="h-4 w-4 mr-2 hidden sm:block" />
+          Logout
+        </DropdownMenuItem>
+        <DropdownMenuSeparator className="hidden sm:block bg-gray-600" />
+        <nav>
+        </nav>
+
       </DropdownMenuContent>
     </DropdownMenu>)
 }
